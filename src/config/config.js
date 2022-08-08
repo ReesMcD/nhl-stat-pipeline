@@ -1,12 +1,10 @@
-import {Kafka} from "kafkajs";
-
-export const config = {
+export default {
   host: "localhost",
   port: "9092",
-  clientId: "nhl-stat-pipeline"
+  clientId: "nhl-stat-pipeline",
+  groupdId: "nhl-group",
+  topics: {
+    schedule: "schedule",
+    stats: "stats",
+  }
 };
-
-export const kafka = new Kafka({
-  brokers: [`${config.host}:9092`],
-  clientId: "clientId",
-});
