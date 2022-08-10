@@ -5,17 +5,17 @@ import handleMessage from "./handleMessage.js";
 const scheduleTopic = config.topics.schedule;
 const statTopic = config.topics.stats;
 
-
 const run = async () => {
   await consumer.connect();
   await consumer.subscribe({ topics: [scheduleTopic, statTopic] });
   await consumer.run({
-    eachMessage: ({ topic, partition, message }) =>
-      handleMessage({ topic, partition, message }),
+    eachMessage: (message) => handleMessage(message),
   });
 };
 
-run().catch((e) => console.error(`[${config.clientId}/consumer] ${e.message}`, e));
+run().catch((e) =>
+  console.error(`[${config.clientId}/consumer] ${e.message}`, e)
+);
 
 const errorTypes = ["unhandledRejection", "uncaughtException"];
 const signalTraps = ["SIGTERM", "SIGINT", "SIGUSR2"];

@@ -2,18 +2,23 @@ import producer from "./producer.js";
 import sendMessage from "./sendMessage.js";
 import config from "../config/config.js";
 import schedule from "node-schedule";
-import getNHLDailySchedule from "../client/getNHLDailySchedule.js";
+import getNHLDailySchedule from "../service/getNHLDailySchedule.js";
 
 const run = async () => {
   await producer.connect();
 
   schedule.scheduleJob("*/10 * * * * *", () => {
-    const gameStart = getNHLDailySchedule();
-    sendMessage(gameStart)
+    const schedule = getNHLDailySchedule();
+    // TODO: Update this to use list of game start times
+    const gameId = "2021020001";
+    const gameStart = "*/5 * * * * *";
+    sendMessage(gameId, gameStart);
   });
 };
 
-run().catch((e) => console.error(`[${config.clientId}/producer] ${e.message}`, e));
+run().catch((e) =>
+  console.error(`[${config.clientId}/producer] ${e.message}`, e)
+);
 
 const errorTypes = ["unhandledRejection", "uncaughtException"];
 const signalTraps = ["SIGTERM", "SIGINT", "SIGUSR2"];
