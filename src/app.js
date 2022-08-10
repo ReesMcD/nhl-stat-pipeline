@@ -1,7 +1,7 @@
-import getNHLDailySchedule from "./client/getNHLDailySchedule.js";
+import getDailyGames from "./producer/getDailyGames.js";
 
 const run = async () => {
-  const resp = await getNHLDailySchedule();
+  const resp = await getDailyGames();
   console.log(resp);
 };
 
