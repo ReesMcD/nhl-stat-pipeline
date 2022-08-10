@@ -1,13 +1,14 @@
-import kafka from "../config/client.js";
+import consumer from "./consumer.js";
 import config from "../config/config.js";
 import handleMessage from "./handleMessage.js";
 
 const scheduleTopic = config.topics.schedule;
-const consumer = kafka.consumer({ groupId: config.groupdId });
+const statTopic = config.topics.stats;
+
 
 const run = async () => {
   await consumer.connect();
-  await consumer.subscribe({ topics: [scheduleTopic] });
+  await consumer.subscribe({ topics: [scheduleTopic, statTopic] });
   await consumer.run({
     eachMessage: ({ topic, partition, message }) =>
       handleMessage({ topic, partition, message }),

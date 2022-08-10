@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && babel src --out-dir dist  --copy-files",
+    "start": "npm run build && node dist/app.js",
     "start:producer": "npm run build && node dist/producer/index.js",
     "start:consumer": "npm run build && node dist/consumer/index.js",
     "start:topics": "npm run build && node dist/admin/createTopics.js"
@@ -31,5 +32,11 @@
     "kafkajs": "^2.1.0",
     "nodemon": "^2.0.19",
     "rimraf": "^3.0.2"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "node-cron": "^3.0.1",
+    "node-schedule": "^2.1.0",
+    "uuid": "^8.3.2"
   }
 }

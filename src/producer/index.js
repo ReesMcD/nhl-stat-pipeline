@@ -1,10 +1,16 @@
 import producer from "./producer.js";
 import sendMessage from "./sendMessage.js";
 import config from "../config/config.js";
+import schedule from "node-schedule";
+import getNHLDailySchedule from "../client/getNHLDailySchedule.js";
 
 const run = async () => {
   await producer.connect();
-  setInterval(sendMessage, 1000);
+
+  schedule.scheduleJob("*/10 * * * * *", () => {
+    const gameStart = getNHLDailySchedule();
+    sendMessage(gameStart)
+  });
 };
 
 run().catch((e) => console.error(`[${config.clientId}/producer] ${e.message}`, e));

@@ -3,17 +3,19 @@ import config from "../config/config.js";
 
 const scheduleTopic = config.topics.schedule;
 
-const createMessage = () => ({
-  key: `key`,
-  value: `value`,
+const createMessage = (gameStart) => ({
+  key: `Schedule`,
+  value: gameStart,
 });
 
-export default () => {
+export default (gameStart) => {
   return producer
     .send({
       topic: scheduleTopic,
-      messages: [createMessage()],
+      messages: [createMessage(gameStart)],
     })
     .then(console.log)
-    .catch((e) => console.error(`[${config.clientId}/producer] ${e.message}`, e));
+    .catch((e) =>
+      console.error(`[${config.clientId}/producer] ${e.message}`, e)
+    );
 };
