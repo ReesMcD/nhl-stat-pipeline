@@ -1,7 +1,7 @@
 import schedule from "node-schedule";
 import scheduleGame from "../producer/scheduleGame.js";
 import getLiveBoxscore from "../service/getLiveBoxscore.js";
-
+import mapPlayerStats from "../util/mapPlayerStats.js";
 import config from "../config/config.js";
 
 const statTopic = config.topics.stats;
@@ -16,11 +16,10 @@ export default async ({ topic, partition, message }) => {
   if (topic === statTopic) {
     schedule.scheduleJob("*/1 * * * * *", async () => {
       const data = await getLiveBoxscore(message.value);
-      // TODO: Clean data and save to db
       const status = data.gameData.status;
-      const boxscore = data.liveData.boxscore;
-      const players = data.gameData.players
+      const playerData = mapPlayerStats(data.gameData.players, data.liveData.boxscore); // TODO: Save to DB
       console.log(status);
+      console.log(playerData);
       // TODO: End job when game ends
     });
   }
