@@ -7,7 +7,7 @@ import schedule from "node-schedule";
 const run = async () => {
   await producer.connect();
 
-  schedule.scheduleJob("*/10 * * * * *", async () => {
+  schedule.scheduleJob("*/30 * * * * *", async () => {
     const games = await getDailyGames();
     games.forEach ((game) => {
       sendMessage(game.gameId, game.gameStart); // TODO: Handle gameStart to work with schuduler
