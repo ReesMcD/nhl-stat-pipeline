@@ -10,7 +10,9 @@ const createMessage = (gameId) => ({
 });
 
 export default async (gameId, gameStart) => {
-  schedule.scheduleJob("*/5 * * * * *", async () => {
+  // NOTE: Should use gameStart but using every 10 seconds for testing
+  console.log(gameStart)
+  schedule.scheduleJob("*/10 * * * * *", async () => {
     await producer.connect();
 
     producer

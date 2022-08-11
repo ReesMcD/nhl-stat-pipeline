@@ -6,8 +6,6 @@ const scheduleTopic = config.topics.schedule;
 const statTopic = config.topics.stats;
 
 export default async () => {
-  console.log("Starting Consumer");
-
   await consumer.connect();
   await consumer.subscribe({ topics: [scheduleTopic, statTopic] });
   await consumer.run({
