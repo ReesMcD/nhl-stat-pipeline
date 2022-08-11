@@ -19,7 +19,7 @@ export default async (gameId, gameStart) => {
         messages: [createMessage(gameId)],
       })
       .catch((e) =>
-        console.error(`[${config.clientId}/producer] ${e.message}`, e)
+        console.error(`[${config.clientId}/producer/stats] ${e.message}`, e)
       );
   });
 };

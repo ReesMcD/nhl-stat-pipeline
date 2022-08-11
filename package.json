@@ -6,8 +6,8 @@
   "scripts": {
     "build": "rimraf dist && babel src --out-dir dist  --copy-files",
     "start": "npm run build && node dist/app.js",
-    "start:producer": "npm run build && node dist/producer/index.js",
-    "start:consumer": "npm run build && node dist/consumer/index.js",
+    "start:producer": "npm run build && node dist/producer/runProducer.js",
+    "start:consumer": "npm run build && node dist/consumer/runConsumer.js",
     "start:topics": "npm run build && node dist/admin/createTopics.js"
   },
   "type": "module",
