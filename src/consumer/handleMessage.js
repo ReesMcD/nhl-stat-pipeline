@@ -17,7 +17,10 @@ export default async ({ topic, partition, message }) => {
     schedule.scheduleJob("*/1 * * * * *", async () => {
       const data = await getLiveBoxscore(message.value);
       // TODO: Clean data and save to db
-      console.log(data);
+      const status = data.gameData.status;
+      const boxscore = data.liveData.boxscore;
+      const players = data.gameData.players
+      console.log(status);
       // TODO: End job when game ends
     });
   }

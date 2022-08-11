@@ -6,7 +6,7 @@ export default async () => {
   const games = schedule.dates[0].games;
 
   games.forEach((game) => {
-    gameArr.push({ gameId: game.gamePk+"", gameStart: game.gameDate });
+    gameArr.push({ gameId: game.gamePk + "", gameStart: game.gameDate });
   });
 
   return gameArr;

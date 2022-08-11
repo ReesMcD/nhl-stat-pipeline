@@ -4,7 +4,6 @@ import producer from "./producer/producer.js";
 import consumer from "./consumer/consumer.js";
 import config from "./config/config.js";
 
-
 const run = async () => {
   runProducer().catch((e) =>
     console.error(`[${config.clientId}/producer/schedule] ${e.message}`, e)
@@ -15,7 +14,7 @@ const run = async () => {
 };
 
 run().catch(() => {
-  console.error("Big Error")
+  console.error("Big Error");
 });
 
 const errorTypes = ["unhandledRejection", "uncaughtException"];

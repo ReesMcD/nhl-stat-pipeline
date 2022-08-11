@@ -8,14 +8,15 @@ const createMessage = (gameId, gameStart) => ({
   value: gameStart,
 });
 
-export default (gameId, gameStart) => {
-  return producer
-    .send({
-      topic: scheduleTopic,
-      messages: [createMessage(gameId, gameStart)],
-    })
-    .then(console.log)
-    .catch((e) =>
-      console.error(`[${config.clientId}/producer] ${e.message}`, e)
-    );
+export default async (gameId, gameStart) => {
+  try {
+    const message = await producer
+      .send({
+        topic: scheduleTopic,
+        messages: [createMessage(gameId, gameStart)],
+      });
+    return console.log(message);
+  } catch (e) {
+    return console.error(`[${config.clientId}/producer] ${e.message}`, e);
+  }
 };
