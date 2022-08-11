@@ -14,10 +14,11 @@ export default async ({ topic, partition, message }) => {
   }
 
   if (topic === statTopic) {
-    // TODO: Get live stats and save to db
     schedule.scheduleJob("*/1 * * * * *", async () => {
       const data = await getLiveBoxscore(message.value);
+      // TODO: Clean data and save to db
       console.log(data);
+      // TODO: End job when game ends
     });
   }
 };

@@ -10,7 +10,7 @@ const run = async () => {
   schedule.scheduleJob("*/30 * * * * *", async () => {
     const games = await getDailyGames();
     games.forEach ((game) => {
-      sendMessage(game.gameId, game.gameStart); // TODO: Handle gameStart to work with schuduler
+      sendMessage(game.gameId, game.gameStart);
     })
   });
 };
