@@ -7,7 +7,7 @@ jest.mock("axios");
 
 describe("getNHLDailySchedule", () => {
   describe("when API call is successful", () => {
-    it("should return users list", async () => {
+    it("should return data", async () => {
       const gameId = 1;
       const resp = {
         data: {
@@ -16,7 +16,7 @@ describe("getNHLDailySchedule", () => {
       };
       axios.get.mockResolvedValueOnce(resp);
 
-      const result = await getNHLDailySchedule(gameId);
+      const result = await getNHLDailySchedule();
 
       expect(axios.get).toHaveBeenCalledWith(
         `${config.nhlApi}/v1/schedule?date=2021-10-12`

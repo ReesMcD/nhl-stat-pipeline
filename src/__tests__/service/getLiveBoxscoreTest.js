@@ -7,7 +7,7 @@ jest.mock("axios");
 
 describe("getLiveBoxscore", () => {
   describe("when API call is successful", () => {
-    it("should return users list", async () => {
+    it("should return return data", async () => {
       const gameId = 1;
       const resp = {
         data: {
