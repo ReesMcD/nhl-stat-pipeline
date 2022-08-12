@@ -15,6 +15,7 @@ export default (players, boxscore) => {
     };
 
     const statObj = statMap.get(key).stats;
+    
     if (isNull(statObj)) {
       playerMap.set(player.id, playerStats);
     } else {
@@ -40,8 +41,7 @@ export default (players, boxscore) => {
 
 const isNull = (obj) => {
   return (
-    obj &&
-    Object.keys(obj).length === 0 &&
-    Object.getPrototypeOf(obj) === Object.prototype
+    (obj && Object.keys(obj).length === 0 && obj.constructor === Object) ||
+    obj === undefined
   );
 };
